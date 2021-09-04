@@ -1,37 +1,68 @@
 package com.student;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+class Vehicle {
+	public void horn(){
+		System.out.println("Horn in Vehicle...");
+	}
+}
+
+class Car {
+	public void horn(){
+		System.out.println("Horn in Car method...");
+	}
+}
+
+class Bus {
+	public void steering(){
+		System.out.println("steering in Bus method...");
+	}
+	
+}
+
+class Display {
+	 public <E>void displayMethod(E obj){
+		 if(obj instanceof Car){
+			 Car myCar= (Car)obj;
+			 myCar.horn();
+		 }
+		 
+		 if(obj instanceof Bus){
+			 Bus myBus = (Bus) obj;
+			 myBus.steering();
+		 }
+		 
+	 }
+}
+
+class Box<T>{
+	private T obj;
+	
+	public void add(T obj){
+		this.obj = obj;
+	}
+	
+	public T get(){
+		return obj;
+	}
+	
+}
+
+
 
 public class Student {
-	public void calculateMarks() {
-		try {
-			int marks = 100;
-			int per = 100 / 0; // throw new ArithmeticException()
-		} catch (ClassCastException e) {
-			System.out.println("Exception Caught here...");
-		}
-	}
-
-	public void viewSemesterDetails() throws Exception {
-	
-		readFromTextFile();
+	public static void main(String[] args) {
+		 Box<Vehicle> vehicleBox = new Box<Vehicle>();
+		 
+		 vehicleBox.add(new Vehicle());
+		 
+		 Vehicle myVehicle = vehicleBox.get();
+		 
+		 myVehicle.horn();
+		 
+		 
+		 
+		 
+		 
 		
-	}
-
-	public void readFromTextFile()throws Exception {
-		File myFile = new File("D:\\Ayyappan\\Hi.txt");
-		BufferedReader br = null;
-		
-			br = new BufferedReader(new FileReader(myFile));
-			String str=br.readLine();
-			while (str != null) {
-				System.out.println(str);
-				str = br.readLine();
-			}
-
 	}
 }
